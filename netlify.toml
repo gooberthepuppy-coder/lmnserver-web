@@ -1,0 +1,3 @@
+[build]
+  publish = "lmnserver website"
+  functions = "lmnserver website/netlify/functions"
