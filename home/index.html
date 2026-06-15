@@ -1,43 +1,90 @@
 <!DOCTYPE html>
-<html class="h-screen overflow-hidden">
+<html>
 <head>
     <title>LMNServer | Classic Factions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; overflow: hidden; }
+        body {
+            background: #22252e;
+            color: white;
+            font-family: sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        marquee {
+            background: #303342;
+            padding: 8px 0;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            overflow: hidden;
+        }
+        .main img { width: 80px; }
+        .main h1 { font-size: 24px; margin-top: 16px; }
+        .main .sub { color: #9ca3af; margin-top: 8px; font-size: 14px; }
+        .promo {
+            max-width: 672px;
+            margin-top: 40px;
+            background: #1a1c23;
+            padding: 24px;
+            border: 2px solid #374151;
+            text-align: left;
+            font-size: 12px;
+            line-height: 1.75;
+        }
+        .promo p { margin-bottom: 16px; }
+        .promo p:last-child { margin-bottom: 0; color: #60a5fa; font-weight: bold; }
+        .buttons { margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+        .buttons a {
+            padding: 8px 24px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .btn-blue   { background: #2563eb; }
+        .btn-indigo { background: #4f46e5; }
+        .btn-gray   { background: #374151; }
+        .buttons a:hover { opacity: 0.85; }
+    </style>
 </head>
-<body class="bg-[#22252e] text-white h-screen flex flex-col justify-between">
+<body>
 
-    <!-- Top Scrolling Text -->
-    <marquee class="bg-[#303342] py-2 font-bold uppercase tracking-widest text-sm shrink-0">
-        THIS SITE IS UNDER CONSTRUCTION
-    </marquee>
+    <marquee>THIS SITE IS UNDER CONSTRUCTION</marquee>
 
-    <!-- Main Content -->
-    <div class="flex-grow flex flex-col items-center justify-center p-10 overflow-hidden">
-        <!-- Logo -->
-        <img src="6cefa18c020e5f77e62cc970e584f014-removebg-preview.png" class="w-20">
-        
-        <h1 class="text-2xl mt-4">LMNServer</h1>
-        <p class="text-gray-400 mt-2">Bring back the golden days of Factions!</p>
+    <div class="main">
+        <img src="6cefa18c020e5f77e62cc970e584f014-removebg-preview.png" alt="LMNServer Logo">
+        <h1>LMNServer</h1>
+        <p class="sub">Bring back the golden days of Factions!</p>
 
-        <!-- Promo Text -->
-        <div class="max-w-2xl mt-10 bg-[#1a1c23] p-6 border-2 border-gray-700 text-left text-[12px] leading-relaxed">
-            <p class="mb-4">Lets face it. Factions is not how it used to be. The game evolved into something.. not so kind.</p>
-            <p class="mb-4">You want a better community, or even just a map wipe? So do I. With LMNServer we can bring back the golden days of Factions!</p>
-            <p class="mb-4 font-bold text-blue-400">We are currently on version 1.5, with plans for 3.0, 4.21b, and a wild 0.33 custom server!</p>
+        <div class="promo">
+            <p>Lets face it. Factions is not how it used to be. The game evolved into something.. not so kind.</p>
+            <p>You want a better community, or even just a map wipe? So do I. With LMNServer we can bring back the golden days of Factions!</p>
+            <p>We are currently on version 1.5, with plans for 3.0, 4.21b, and a wild 0.33 custom server!</p>
         </div>
 
-        <!-- Buttons -->
-        <div class="mt-8 space-x-4">
-            <a href="/skins/" class="bg-blue-600 px-6 py-2">UPLOAD SKIN</a>
-            <a href="https://discord.gg/7u4DhSg5pz" target="_blank" class="bg-indigo-600 px-6 py-2">JOIN DISCORD</a>
-            <a href="players.html" class="bg-gray-700 px-6 py-2">ONLINE PLAYERS</a>
+        <div class="buttons">
+            <a href="/skins/" class="btn-blue">UPLOAD SKIN</a>
+            <a href="https://discord.gg/7u4DhSg5pz" target="_blank" class="btn-indigo">JOIN DISCORD</a>
+            <a href="players.html" class="btn-gray">ONLINE PLAYERS</a>
         </div>
     </div>
 
-    <!-- Bottom Scrolling Text -->
-    <marquee class="bg-[#303342] py-2 font-bold uppercase tracking-widest text-sm shrink-0" direction="right">
-        THIS SITE IS UNDER CONSTRUCTION
-    </marquee>
+    <marquee direction="right">THIS SITE IS UNDER CONSTRUCTION</marquee>
 
 </body>
 </html>
