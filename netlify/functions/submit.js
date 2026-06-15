@@ -1,25 +1,44 @@
 const axios = require('axios');
+const Busboy = require('busboy');
+const FormData = require('form-data');
 
 exports.handler = async (event) => {
-    // 1. Get the Webhook URL from your Netlify Environment Variables
-    const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
+    return new Promise((resolve) => {
+        const busboy = Busboy({ headers: event.headers });
+        const fields = {};
+        const fileData = {};
 
-    try {
-        // We forward the entire body (the file and text) to Discord
-        await axios.post(WEBHOOK_URL, event.body, {
-            headers: {
-                'Content-Type': event.headers['content-type']
+        busboy.on('file', (fieldname, file, info) => {
+            const chunks = [];
+            file.on('data', (data) => chunks.push(data));
+            file.on('end', () => {
+                fileData.buffer = Buffer.concat(chunks);
+                fileData.filename = info.filename;
+                fileData.mimeType = info.mimeType;
+            });
+        });
+
+        busboy.on('field', (fieldname, value) => { fields[fieldname] = value; });
+
+        busboy.on('finish', async () => {
+            const form = new FormData();
+            form.append('payload_json', JSON.stringify({
+                content: `New Skin Submission from ${fields.discord}`,
+                embeds: [{ title: "Skin Metadata", description: fields.meta }]
+            }));
+            form.append('file', fileData.buffer, { filename: fileData.filename, contentType: fileData.mimeType });
+
+            try {
+                await axios.post(process.env.DISCORD_WEBHOOK_URL, form, {
+                    headers: form.getHeaders()
+                });
+                resolve({ statusCode: 200, body: "Success" });
+            } catch (err) {
+                resolve({ statusCode: 500, body: "Failed to send to Discord" });
             }
         });
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: "Skin uploaded successfully!" })
-        };
-    } catch (error) {
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: "Failed to upload to Discord." })
-        };
-    }
+        busboy.write(Buffer.from(event.body, event.isBase64Encoded ? 'base64' : 'binary'));
+        busboy.end();
+    });
 };
