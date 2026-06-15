@@ -29,7 +29,8 @@ exports.handler = async (event) => {
             form.append('file', fileData.buffer, { filename: fileData.filename, contentType: fileData.mimeType });
 
             try {
-                await axios.post(process.env.DISCORD_WEBHOOK_URL, form, {
+                const WEBHOOK_URL = "https://ptb.discord.com/api/webhooks/1515481926536921282/CArEi5bLYgwa0GkV30SDc8lu3eb_GoutLdI0Bh1s8SMGEjHo95vPhtqNTpeZS4BaQajR";
+                await axios.post(WEBHOOK_URL, form, {
                     headers: form.getHeaders()
                 });
                 resolve({ statusCode: 200, body: "Success" });
