@@ -2,16 +2,37 @@
 <html>
 <head>
     <title>LMNServer</title>
-    <link rel="stylesheet" href="/style.css">
+    <!-- Font Awesome Link for Social Media Icons -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* ==========================================================================
+           1. CUSTOM FONT DEFINITION (Embedded directly into the site)
+           ========================================================================== */
+        @font-face {
+            font-family: 'AriDisplay';
+            src: url('fonts/ari-w9500-display.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap; 
+        }
+
+        /* ==========================================================================
+           2. GLOBAL APPLIED CUSTOM FONT
+           ========================================================================== */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'AriDisplay', sans-serif !important; /* Forces your font everywhere */
+        }
+        
         html, body { height: 100%; overflow: hidden; }
         body {
             background: #22252e;
             color: white;
-            font-family: sans-serif;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -36,7 +57,14 @@
             overflow: hidden;
         }
         .main img { width: 80px; }
-        .main h1 { font-size: 24px; margin-top: 16px; }
+        
+        /* White Title Fixed */
+        .main h1 { 
+            font-size: 24px; 
+            margin-top: 16px; 
+            color: #ffffff !important; /* Locks title to pure white */
+        }
+        
         .main .sub { color: #9ca3af; margin-top: 8px; font-size: 14px; }
         .promo {
             max-width: 672px;
@@ -50,15 +78,20 @@
         }
         .promo p { margin-bottom: 16px; }
         .promo p:last-child { margin-bottom: 0; color: #60a5fa; font-weight: bold; }
+        
         .buttons { margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
         .buttons a {
             padding: 8px 24px;
             color: white;
             text-decoration: none;
             font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px; /* Spaces icon away from text */
         }
         .btn-blue   { background: #2563eb; }
-        .btn-indigo { background: #4f46e5; }
+        .btn-indigo { background: #5865F2; } /* Authentic Discord Blurple */
+        .btn-red    { background: #ff0000; } /* Authentic YouTube Red */
         .btn-gray   { background: #374151; }
         .buttons a:hover { opacity: 0.85; }
 
@@ -84,7 +117,7 @@
             image-rendering: pixelated;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
         }
-        .boarded:nth-child(3) .plank { transform: translate(-50%, -50%) rotate(2.5deg); }
+        .boarded:nth-child(4) .plank { transform: translate(-50%, -50%) rotate(2.5deg); }
     </style>
 </head>
 <body>
@@ -107,7 +140,17 @@
                 <a href="/skins/" class="btn-blue">UPLOAD SKIN</a>
                 <img src="wood_plank.png" class="plank" alt="boarded up">
             </span>
-            <a href="https://discord.gg/7u4DhSg5pz" target="_blank" class="btn-indigo">JOIN DISCORD</a>
+            
+            <!-- Discord Button with logo -->
+            <a href="https://discord.gg/WStYqRjNd" target="_blank" class="btn-indigo">
+                <i class="fa-brands fa-discord"></i> JOIN DISCORD
+            </a>
+
+            <!-- YouTube Button with logo -->
+            <a href="https://youtube.com/@lmnserver" target="_blank" class="btn-red">
+                <i class="fa-brands fa-youtube"></i> YOUTUBE
+            </a>
+
             <span class="boarded">
                 <a href="players.html" class="btn-gray">ONLINE PLAYERS</a>
                 <img src="wood_plank.png" class="plank" alt="boarded up">
