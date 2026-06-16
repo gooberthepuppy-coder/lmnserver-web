@@ -5,28 +5,20 @@
     <!-- Font Awesome Link for Social Media Icons -->
     <link rel="stylesheet" href="https://cloudflare.com">
     
+    <!-- Reliable External Link for your Ari-W9500 Font -->
+    <link href="https://cdnfonts.com" rel="stylesheet">
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* ==========================================================================
-           1. CUSTOM FONT DEFINITION (Embedded directly into the site)
-           ========================================================================== */
-        @font-face {
-            font-family: 'AriDisplay';
-            src: url('fonts/ari-w9500-display.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap; 
-        }
-
-        /* ==========================================================================
-           2. GLOBAL APPLIED CUSTOM FONT
+           GLOBAL APPLIED CUSTOM FONT (Uses the loaded webfont)
            ========================================================================== */
         *, *::before, *::after { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            font-family: 'AriDisplay', sans-serif !important; /* Forces your font everywhere */
+            font-family: 'Ari-W9500', sans-serif !important; /* Set to the exact CDN name */
         }
         
         html, body { height: 100%; overflow: hidden; }
@@ -58,11 +50,11 @@
         }
         .main img { width: 80px; }
         
-        /* White Title Fixed */
+        /* White Title */
         .main h1 { 
             font-size: 24px; 
             margin-top: 16px; 
-            color: #ffffff !important; /* Locks title to pure white */
+            color: #ffffff !important; 
         }
         
         .main .sub { color: #9ca3af; margin-top: 8px; font-size: 14px; }
@@ -87,11 +79,11 @@
             font-size: 14px;
             display: inline-flex;
             align-items: center;
-            gap: 8px; /* Spaces icon away from text */
+            gap: 8px; 
         }
         .btn-blue   { background: #2563eb; }
-        .btn-indigo { background: #5865F2; } /* Authentic Discord Blurple */
-        .btn-red    { background: #ff0000; } /* Authentic YouTube Red */
+        .btn-indigo { background: #5865F2; } 
+        .btn-red    { background: #ff0000; } 
         .btn-gray   { background: #374151; }
         .buttons a:hover { opacity: 0.85; }
 
@@ -136,11 +128,6 @@
         </div>
 
         <div class="buttons">
-            <span class="boarded">
-                <a href="/skins/" class="btn-blue">UPLOAD SKIN</a>
-                <img src="wood_plank.png" class="plank" alt="boarded up">
-            </span>
-            
             <!-- Discord Button with logo -->
             <a href="https://discord.gg/WStYqRjNd" target="_blank" class="btn-indigo">
                 <i class="fa-brands fa-discord"></i> JOIN DISCORD
