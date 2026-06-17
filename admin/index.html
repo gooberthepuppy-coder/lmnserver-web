@@ -1,172 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>LMNServer</title>
-    <link rel="stylesheet" href="https://cloudflare.com">
-    
-    <link href="https://cdnfonts.com" rel="stylesheet">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMNServer Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'minecraft': ['"Press Start 2P"', 'cursive'],
+                    },
+                    colors: {
+                        sidebar: '#1a1c23',
+                        mainbg: '#22252e',
+                        cardbg: '#2a2d36',
+                        accent: '#3b82f6',
+                        alertbg: '#113c41',
+                        alertborder: '#1b5a61',
+                        online: '#16a34a'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* ==========================================================================
-           GLOBAL APPLIED CUSTOM FONT (Uses the loaded webfont)
-           ========================================================================== */
-        *, *::before, *::after { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Ari-W9500', sans-serif !important; /* Set to the exact CDN name */
-        }
-        
-        html, body { height: 100%; overflow: hidden; }
-        body {
-            background: #22252e;
-            color: white;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        marquee {
-            background: #303342;
-            padding: 8px 0;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 14px;
-            flex-shrink: 0;
-        }
-        .main {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            overflow: hidden;
-        }
-        .main img { width: 80px; }
-        
-        /* ==========================================================================
-           PIXELATED 3D LOGO TEXT STYLING
-           ========================================================================== */
-        .main h1 { 
-            font-size: 56px; /* Increased size to look like a main title logo */
-            margin-top: 16px; 
-            color: #ffffff !important; 
-            text-transform: none;
-            letter-spacing: -1px;
-            font-weight: normal;
-            
-            /* Sharp rendering settings for pixel fonts */
-            image-rendering: pixelated;
-            font-smooth: never;
-            -webkit-font-smoothing: none;
-            -moz-osx-font-smoothing: none;
-
-            /* Precise layered text-shadow to create the dark blue 3D bottom-right extrusion */
-            text-shadow: 
-                2px 2px 0px #18243c,
-                3px 3px 0px #18243c,
-                4px 4px 0px #18243c,
-                5px 5px 0px #18243c,
-                6px 6px 0px #18243c;
-        }
-        
-        .main .sub { color: #9ca3af; margin-top: 16px; font-size: 14px; }
-        .promo {
-            max-width: 672px;
-            margin-top: 40px;
-            background: #1a1c23;
-            padding: 24px;
-            border: 2px solid #374151;
-            text-align: left;
-            font-size: 12px;
-            line-height: 1.75;
-        }
-        .promo p { margin-bottom: 16px; }
-        .promo p:last-child { margin-bottom: 0; color: #60a5fa; font-weight: bold; }
-        
-        .buttons { margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-        .buttons a {
-            padding: 8px 24px;
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px; 
-        }
-        .btn-blue  { background: #2563eb; }
-        .btn-indigo { background: #5865F2; } 
-        .btn-red    { background: #ff0000; } 
-        .btn-gray   { background: #374151; }
-        .buttons a:hover { opacity: 0.85; }
-
-        /* Boarded-up button styles */
-        .boarded {
-            position: relative;
-            display: inline-block;
-        }
-        .boarded a {
-            pointer-events: none;
-            opacity: 0.45;
-            filter: grayscale(40%);
-        }
-        .boarded a:hover { opacity: 0.45; }
-        .plank {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-3deg);
-            width: 130%;
-            pointer-events: none;
-            z-index: 10;
-            image-rendering: pixelated;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
-        }
-        /* Slightly rotates the plank on the last button for a more natural look */
-        .buttons .boarded:last-child .plank { transform: translate(-50%, -50%) rotate(2.5deg); }
+        body { font-family: 'Press Start 2P', cursive; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #1a1c23; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
-<body>
+<body class="bg-mainbg text-gray-200 h-screen flex overflow-hidden text-[10px]">
 
-    <marquee>THIS SITE IS UNDER CONSTRUCTION</marquee>
+    <aside class="w-64 bg-sidebar flex flex-col h-full border-r-4 border-gray-900 shrink-0">
+        <div class="p-5 flex items-center space-x-3 border-b-4 border-gray-900">
+            <img src="6cefa18c020e5f77e62cc970e584f014-removebg-preview.png" alt="Logo" class="w-8 h-8 object-contain">
+            <h1 class="text-xs font-bold text-white">LMNServer</h1>
+        </div>
+        
+        <nav class="flex-1 overflow-y-auto py-4" id="sidebar-nav">
+            <div class="px-2">
+                <a href="#" onclick="switchTab('home', this)" class="nav-link active flex items-center space-x-3 text-accent bg-gray-800 px-4 py-4 border-l-4 border-accent">
+                    <i class="fa-solid fa-house w-4"></i>
+                    <span>HOME</span>
+                </a>
+            </div>
 
-    <div class="main">
-        <img src="6cefa18c020e5f77e62cc970e584f014-removebg-preview.png" alt="LMNServer Logo">
-        <h1>LMNServer</h1>
-        <p class="sub">Bring back the golden days of Factions!</p>
+            <div class="mt-6">
+                <p class="px-6 text-[8px] text-gray-500 uppercase mb-2">Admin</p>
+                <div class="space-y-0">
+                    <a href="#" onclick="switchTab('users', this)" class="nav-link flex items-center space-x-3 text-gray-400 hover:text-white hover:bg-gray-800 px-6 py-4 border-l-4 border-transparent">
+                        <i class="fa-solid fa-users w-4"></i>
+                        <span>USERS</span>
+                    </a>
+                    <a href="#" onclick="switchTab('bans', this)" class="nav-link flex items-center space-x-3 text-gray-400 hover:text-white hover:bg-gray-800 px-6 py-4 border-l-4 border-transparent">
+                        <i class="fa-solid fa-gavel w-4"></i>
+                        <span>BANS</span>
+                    </a>
+                </div>
+            </div>
 
-        <div class="promo">
-            <p>Lets face it. Factions is not how it used to be. The game evolved into something.. not so kind.</p>
-            <p>You want a better community, new features, or even just a map wipe? So do I. With LMNServer, you can have all that!</p>
-            <p>We are currently on version 1.5, with plans for 3.0, 4.21b, and a Wild 0.33 custom server!</p>
+            <div class="mt-6">
+                <p class="px-6 text-[8px] text-gray-500 uppercase mb-2">Game</p>
+                <div class="space-y-0">
+                    <a href="#" onclick="switchTab('prison', this)" class="nav-link flex items-center space-x-3 text-gray-400 hover:text-white hover:bg-gray-800 px-6 py-4 border-l-4 border-transparent">
+                        <i class="fa-solid fa-border-all w-4"></i>
+                        <span>PRISON</span>
+                    </a>
+                    <a href="#" onclick="switchTab('teleport', this)" class="nav-link flex items-center space-x-3 text-gray-400 hover:text-white hover:bg-gray-800 px-6 py-4 border-l-4 border-transparent">
+                        <i class="fa-solid fa-location-dot w-4"></i>
+                        <span>TP</span>
+                    </a>
+                    <a href="#" onclick="switchTab('console', this)" class="nav-link flex items-center space-x-3 text-gray-400 hover:text-white hover:bg-gray-800 px-6 py-4 border-l-4 border-transparent">
+                        <i class="fa-solid fa-terminal w-4"></i>
+                        <span>CONSOLE</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="flex-1 p-10 overflow-y-auto">
+        <div id="home" class="tab-content active">
+            <h2 class="text-xl mb-8">DASHBOARD</h2>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-cardbg border-4 border-gray-900 p-6">
+                    <p class="text-[8px] text-gray-400">PLAYERS</p>
+                    <h3 class="text-2xl mt-2">63</h3>
+                </div>
+                <div class="bg-cardbg border-4 border-gray-900 p-6">
+                    <p class="text-[8px] text-gray-400">TPS</p>
+                    <h3 class="text-2xl mt-2">19.98</h3>
+                </div>
+            </div>
         </div>
 
-        <div class="buttons">
-            <span class="boarded">
-                <a href="/skins/" class="btn-blue">UPLOAD SKIN</a>
-                <img src="wood_plank.png" class="plank" alt="boarded up">
-            </span>
-            
-            <a href="https://discord.gg/WStYqRjNd" target="_blank" class="btn-indigo">
-                <i class="fa-brands fa-discord"></i> DISCORD
-            </a>
-
-            <a href="https://youtube.com/@lmnserver" target="_blank" class="btn-red">
-                <i class="fa-brands fa-youtube"></i> YOUTUBE
-            </a>
-
-            <span class="boarded">
-                <a href="players.html" class="btn-gray">ONLINE PLAYERS</a>
-                <img src="wood_plank.png" class="plank" alt="boarded up">
-            </span>
+        <div id="console" class="tab-content h-full">
+            <h2 class="text-xl mb-4">CONSOLE</h2>
+            <div class="bg-[#0c0c0e] border-4 border-gray-900 p-4 h-[400px] text-[8px] overflow-y-auto">
+                <div>[INFO]: LMNServer started on *:25565</div>
+                <div class="mt-2 text-green-400">> _</div>
+            </div>
         </div>
-    </div>
 
-    <marquee direction="right">THIS SITE IS UNDER CONSTRUCTION</marquee>
+        <div id="teleport" class="tab-content"><h2 class="text-xl">TELEPORT</h2></div>
+        <div id="prison" class="tab-content"><h2 class="text-xl">PRISON</h2></div>
+        <div id="users" class="tab-content"><h2 class="text-xl">USERS</h2></div>
+        <div id="bans" class="tab-content"><h2 class="text-xl">BANS</h2></div>
+    </main>
 
+    <script>
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('text-accent', 'bg-gray-800', 'border-accent');
+                l.classList.add('text-gray-400', 'border-transparent');
+            });
+            element.classList.remove('text-gray-400', 'border-transparent');
+            element.classList.add('text-accent', 'bg-gray-800', 'border-accent');
+        }
+    </script>
 </body>
 </html>
