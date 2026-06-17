@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>LMNServer</title>
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- FIXED: Replaced the broken cloudflare.com placeholder with the correct Font Awesome library CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <link href="https://cdnfonts.com" rel="stylesheet">
     
@@ -12,7 +13,11 @@
         /* ==========================================================================
            GLOBAL APPLIED CUSTOM FONT (Uses the loaded webfont)
            ========================================================================== */
-        *, *::before, *::after { 
+        /* FIXED: Added :not([class*="fa-"]) so the global rule doesn't force your 
+           pixel font family onto the vector icon font system */
+        *:not([class*="fa-"]), 
+        *::before:not([class*="fa-"]), 
+        *::after:not([class*="fa-"]) { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
@@ -104,14 +109,6 @@
         .btn-gray   { background: #374151; }
         .buttons a:hover { opacity: 0.85; }
 
-        /* Icon sizing for custom webp images inside buttons */
-        .btn-icon {
-            width: 18px !important;
-            height: 18px !important;
-            object-fit: contain;
-            image-rendering: pixelated;
-        }
-
         /* Boarded-up button styles */
         .boarded {
             position: relative;
@@ -159,12 +156,13 @@
                 <img src="wood_plank.png" class="plank" alt="boarded up">
             </span>
             
+            <!-- FIXED: Changed back to <i> tags with native vector SVGs -->
             <a href="https://discord.gg/WStYqRjNd" target="_blank" class="btn-indigo">
-                <img src="dc.webp" alt="Discord" class="btn-icon"> DISCORD
+                <i class="fa-brands fa-discord"></i> DISCORD
             </a>
 
             <a href="https://youtube.com/@lmnserver" target="_blank" class="btn-red">
-                <img src="yt.webp" alt="YouTube" class="btn-icon"> YOUTUBE
+                <i class="fa-brands fa-youtube"></i> YOUTUBE
             </a>
 
             <span class="boarded">
