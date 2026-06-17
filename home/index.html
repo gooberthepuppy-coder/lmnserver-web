@@ -104,6 +104,14 @@
         .btn-gray   { background: #374151; }
         .buttons a:hover { opacity: 0.85; }
 
+        /* Icon sizing for custom webp images inside buttons */
+        .btn-icon {
+            width: 18px !important;
+            height: 18px !important;
+            object-fit: contain;
+            image-rendering: pixelated;
+        }
+
         /* Boarded-up button styles */
         .boarded {
             position: relative;
@@ -152,11 +160,11 @@
             </span>
             
             <a href="https://discord.gg/WStYqRjNd" target="_blank" class="btn-indigo">
-                <i class="fa-brands fa-discord"></i> DISCORD
+                <img src="dc.webp" alt="Discord" class="btn-icon"> DISCORD
             </a>
 
             <a href="https://youtube.com/@lmnserver" target="_blank" class="btn-red">
-                <i class="fa-brands fa-youtube"></i> YOUTUBE
+                <img src="yt.webp" alt="YouTube" class="btn-icon"> YOUTUBE
             </a>
 
             <span class="boarded">
