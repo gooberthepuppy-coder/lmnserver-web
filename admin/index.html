@@ -6,11 +6,7 @@
     <title>LMNServer Admin Panel</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;700&family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-    
-    <link href="https://cdnfonts.com" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -39,263 +35,88 @@
         ::-webkit-scrollbar-thumb { background: #4b5563; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        
-        /* Bottom Nav Icon Transitions */
-        .bottom-nav-link i {
-            transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out, color 0.2s;
-            transform-origin: center;
-        }
-        
-        /* Active State Styles for Bottom Nav */
-        .bottom-nav-link.active {
-            opacity: 1;
-        }
-        .bottom-nav-link.active i {
-            transform: scale(0.85);
-            color: #3b82f6;
-            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8));
-        }
-        
-        .pixelated {
-            image-rendering: pixelated;
-        }
-
-        /* Top Left Floating Logo Style from first image */
-        .top-logo-box {
-            background: linear-gradient(to right, #ffffff, #b0b0b0);
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-        }
-
-        /* ==========================================================================
-           PIXELATED 3D LOGO TEXT STYLING FOR THE FLOATING TOP BAR (ARI-W9500)
-           ========================================================================== */
-        .pixel-logo-text {
-            font-family: 'Ari-W9500', sans-serif !important;
-            font-size: 26px; /* Adjusted slightly larger as Ari text is narrower than Press Start 2P */
-            color: #ffffff !important;
-            letter-spacing: -0.5px;
-            font-weight: normal;
-            
-            /* Sharp pixel font rules */
-            image-rendering: pixelated;
-            font-smooth: never;
-            -webkit-font-smoothing: none;
-            -moz-osx-font-smoothing: none;
-
-            /* Stepped dark blue 3D shadow extrusion */
-            text-shadow: 
-                1px 1px 0px #18243c,
-                2px 2px 0px #18243c,
-                3px 3px 0px #18243c,
-                4px 4px 0px #18243c;
-        }
+        .bottom-nav-link.active i { color: #3b82f6; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8)); }
+        .pixel-logo-text { font-family: sans-serif; font-size: 26px; color: #ffffff; text-shadow: 1px 1px 0px #18243c, 2px 2px 0px #18243c, 3px 3px 0px #18243c, 4px 4px 0px #18243c; }
     </style>
 </head>
-<body class="bg-mainbg text-gray-200 font-boxy-mono h-screen flex flex-col overflow-hidden text-lg tracking-wide">
+<body class="bg-mainbg text-gray-200 font-boxy-mono h-screen flex flex-col overflow-hidden text-lg">
 
-    <div class="fixed top-0 left-0 top-logo-box px-4 py-3 flex items-center space-x-3 z-50 rounded-br">
-        <img src="6cefa18c020e5f77e62cc970e584f014-removebg-preview.png" alt="Logo" class="w-8 h-8 object-contain" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzMzMyI+PHBhdGggZD0iTTEyIDJMMiAxMmgydjhoMTh2LThoMkwxMiAyeiIvPjwvc3ZnPg=='">
+    <div class="fixed top-0 left-0 px-4 py-3 z-50">
         <h1 class="pixel-logo-text uppercase">LMNServer</h1>
     </div>
 
-    <main class="flex-1 overflow-y-auto w-full pt-20 pb-28 px-4 sm:px-10 flex flex-col items-center">
-
+    <main class="flex-1 overflow-y-auto w-full pt-20 pb-28 px-4 flex flex-col items-center">
+        
         <div id="home" class="tab-content active w-full max-w-5xl">
-            
-            <div class="text-center my-12">
-                <h2 class="text-2xl sm:text-4xl font-boxy-title text-white tracking-normal uppercase leading-relaxed">Welcome<br>[METAUSER]</h2>
-            </div>
-            
-            <div class="bg-cardbg border border-gray-700 text-gray-200 p-8 w-full shadow-xl">
+            <div class="text-center my-12"><h2 class="text-4xl font-boxy-title text-white uppercase">Welcome</h2></div>
+            <div class="bg-cardbg border border-gray-700 p-8 w-full shadow-xl">
                 <h3 class="text-xl font-boxy-title text-white mb-8 uppercase text-blue-400">Dashboard</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <div class="bg-innerbg border border-gray-700 p-6">
-                        <p class="text-gray-400 text-xs uppercase tracking-widest">Online Players</p>
-                        <h3 class="text-5xl font-bold font-boxy-num text-white mt-2">63</h3>
-                    </div>
-                    <div class="bg-innerbg border border-gray-700 p-6 relative min-h-[110px]">
-                        <div class="absolute top-0 right-0 bg-gray-500/20 text-gray-400 text-[10px] px-3 py-1 font-mono text-center leading-tight">server<br>ping</div>
-                        <p class="text-gray-400 text-xs uppercase tracking-widest invisible">Server TPS</p>
-                        <h3 class="text-5xl font-bold font-boxy-num text-white mt-2 absolute bottom-4">19.98</h3>
-                    </div>
-                    <div class="bg-innerbg border border-gray-700 p-6">
-                        <p class="text-gray-400 text-xs uppercase tracking-widest">In Prison</p>
-                        <h3 class="text-5xl font-bold font-boxy-num text-white mt-2">4</h3>
-                    </div>
-                    <div class="bg-innerbg border border-gray-700 p-6">
-                        <p class="text-gray-400 text-xs uppercase tracking-widest">Active Bans</p>
-                        <h3 class="text-5xl font-bold font-boxy-num text-white mt-2">128</h3>
-                    </div>
-                </div>
-                
-                <div class="bg-innerbg border border-gray-700 p-6">
-                    <h3 class="text-md font-bold text-white mb-4 uppercase tracking-wider text-gray-400">Recent Activity</h3>
-                    <div class="space-y-3 font-mono text-base">
-                        <p class="text-gray-400"><span class="text-accent font-boxy-num font-bold">Dogethegorilla</span> joined the game.</p>
-                        <p class="text-gray-400"><span class="text-yellow-400">[SYSTEM]</span> Backup complete.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="users" class="tab-content w-full max-w-5xl">
-            <div class="bg-cardbg border border-gray-700 text-gray-200 p-8 w-full shadow-xl mt-6">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-                    <h2 class="text-xl font-boxy-title text-white uppercase">User Management</h2>
-                    <div class="relative">
-                        <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
-                        <input type="text" placeholder="Search users..." class="bg-innerbg border border-gray-700 text-gray-300 rounded-none pl-9 pr-4 py-2 focus:outline-none focus:border-accent text-base w-64">
-                    </div>
-                </div>
-
-                <div class="bg-innerbg border border-gray-700 rounded-none overflow-hidden">
-                    <table class="w-full text-left text-base text-gray-400">
-                        <thead class="bg-[#14151b] text-xs uppercase tracking-widest text-gray-500 font-bold border-b border-gray-700">
-                            <tr>
-                                <th class="px-6 py-4">Player</th>
-                                <th class="px-6 py-4">Role</th>
-                                <th class="px-6 py-4">Status</th>
-                                <th class="px-6 py-4 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-800 font-boxy-num">
-                            <tr class="hover:bg-[#22252e] transition-colors">
-                                <td class="px-6 py-4 text-white font-medium text-lg">Dogethegorilla</td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-purple-900/40 text-purple-400 px-3 py-1 rounded-none text-xs font-bold uppercase">Admin</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="text-online flex items-center gap-2 text-xs font-bold uppercase">
-                                        <span class="w-2 h-2 rounded-none bg-online"></span> Online
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button onclick="openUserActions('Dogethegorilla')" class="text-gray-400 hover:text-white transition-colors cursor-pointer p-2">
-                                        <i class="fa-solid fa-pen-to-square text-lg"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-[#22252e] transition-colors">
-                                <td class="px-6 py-4 text-white font-medium text-lg">Juneeey</td>
-                                <td class="px-6 py-4">
-                                    <span class="bg-gray-700/40 text-gray-400 px-3 py-1 rounded-none text-xs font-bold uppercase">Player</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="text-offline flex items-center gap-2 text-xs font-bold uppercase">
-                                        <span class="w-2 h-2 rounded-none bg-offline"></span> Offline
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 text-right">
-                                    <button onclick="openUserActions('Juneeey')" class="text-gray-400 hover:text-white transition-colors cursor-pointer p-2">
-                                        <i class="fa-solid fa-pen-to-square text-lg"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div id="user-actions" class="tab-content w-full max-w-5xl">
-            <div class="bg-gray-400 text-gray-800 p-8 w-full shadow-xl mt-6">
-                <header class="mb-8 flex flex-col sm:flex-row sm:items-center gap-4 border-b border-gray-500 pb-4">
-                    <button onclick="switchTab('users', document.querySelector('[onclick*=\\\'users\\\']'))" class="text-gray-200 hover:text-white bg-gray-700 px-4 py-2 rounded-none transition-colors text-sm uppercase font-boxy-num">
-                        <i class="fa-solid fa-arrow-left mr-2"></i> Back to Users
-                    </button>
-                    <h2 class="text-xl font-boxy-title text-black uppercase tracking-tight">User: <span id="current-user-name" class="text-red-900 font-boxy-num font-bold ml-2"></span></h2>
-                </header>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl text-gray-900 mb-6 font-boxy-num font-bold uppercase tracking-wider">Moderation</h3>
-                        <div class="space-y-6 px-4">
-                            <button class="w-full bg-[#6a6a6a] hover:bg-gray-500 text-black text-4xl py-4 transition shadow-md font-boxy-num font-bold uppercase">Kick</button>
-                            <button class="w-full bg-[#6a6a6a] hover:bg-gray-500 text-black text-4xl py-4 transition shadow-md font-boxy-num font-bold uppercase">Jail</button>
-                            <button class="w-full bg-[#6a6a6a] hover:bg-gray-500 text-[#a31f34] text-4xl py-4 transition shadow-md border-b-4 border-gray-700 font-boxy-num font-bold uppercase">Ban</button>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl text-gray-900 mb-6 font-boxy-num font-bold uppercase tracking-wider">Teleporting</h3>
-                        <div class="space-y-6 px-4">
-                            <button class="w-full bg-[#6a6a6a] hover:bg-gray-500 text-black text-xl py-5 transition shadow-md leading-tight font-boxy-num font-bold uppercase">Teleport<br>Me<br>To</button>
-                            <button class="w-full bg-[#6a6a6a] hover:bg-gray-500 text-black text-xl py-5 transition shadow-md leading-tight font-boxy-num font-bold uppercase">Teleport<br>To<br>Me</button>
-                            <button class="w-full bg-[#6a6a6a] hover:bg-gray-500 text-black text-xl py-5 transition shadow-md leading-tight font-boxy-num font-bold uppercase">Teleport<br>To<br>Coords</button>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col">
-                        <h3 class="text-2xl text-gray-900 mb-6 font-boxy-num font-bold uppercase tracking-wider">Skin</h3>
-                        <div class="flex flex-col items-center px-4">
-                            <div class="w-48 h-48 mb-8 flex items-center justify-center bg-transparent">
-                                <img src="https://mc-heads.net/body/Dogethegorilla/180" alt="Player Skin" id="player-skin-img" class="h-full object-contain pixelated drop-shadow-lg" onerror="this.src='https://mc-heads.net/body/Steve/180'">
-                            </div>
-                            <button class="w-full bg-[#6a6a6a] hover:bg-gray-500 text-black text-2xl py-6 transition shadow-md leading-tight font-boxy-num font-bold uppercase">Import<br>Skin</button>
-                        </div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-innerbg border border-gray-700 p-6"><p class="text-xs uppercase">Online Players</p><h3 class="text-5xl font-bold font-boxy-num mt-2">63</h3></div>
+                    <div class="bg-innerbg border border-gray-700 p-6"><p class="text-xs uppercase">Server TPS</p><h3 class="text-5xl font-bold font-boxy-num mt-2">19.98</h3></div>
                 </div>
             </div>
         </div>
 
         <div id="console" class="tab-content w-full max-w-5xl">
-            <div class="bg-cardbg border border-gray-700 text-gray-200 p-8 w-full shadow-xl mt-6 flex flex-col min-h-[400px]">
-                <header class="mb-6"><h2 class="text-xl font-boxy-title text-white uppercase">Console</h2></header>
-                <div class="bg-innerbg border border-gray-700 flex flex-col flex-1 p-4 font-mono text-sm rounded-none">
-                    <div class="flex-1 text-gray-300 space-y-2">
-                        <div>[10:00:15 INFO]: Starting LMNServer on *:25565</div>
-                        <div class="text-green-400">> _</div>
-                    </div>
+            <div class="bg-cardbg border border-gray-700 p-8 w-full shadow-xl mt-6 flex flex-col min-h-[400px]">
+                <h2 class="text-xl font-boxy-title text-white uppercase mb-6">Console</h2>
+                <div id="console-output" class="bg-innerbg border border-gray-700 flex flex-col flex-1 p-4 font-mono text-sm mb-4 overflow-y-auto max-h-[300px]">
+                    <div class="text-gray-400">[SYSTEM]: Console Ready.</div>
+                </div>
+                <div class="flex gap-2">
+                    <input id="command-input" type="text" placeholder="/command..." 
+                           class="flex-1 bg-innerbg border border-gray-700 p-3 text-white focus:outline-none">
+                    <button onclick="sendCommand()" class="bg-accent px-6 py-3 font-bold uppercase hover:bg-blue-600 transition">Send</button>
                 </div>
             </div>
         </div>
-
     </main>
 
-    <nav class="bg-cardbg border-t border-gray-700 h-24 w-full fixed bottom-0 left-0 flex justify-center items-center gap-12 sm:gap-28 px-4 shadow-[0_-5px_15px_rgba(0,0,0,0.3)] z-40">
-        
-        <button onclick="switchTab('users', this)" class="bottom-nav-link text-gray-500 flex flex-col items-center gap-1 hover:text-gray-300 cursor-pointer opacity-70">
-            <i class="fa-solid fa-users text-3xl mb-1"></i>
-            <span class="text-sm font-bold tracking-widest text-gray-400 uppercase font-boxy-num">users</span>
+    <nav class="bg-cardbg border-t border-gray-700 h-24 w-full fixed bottom-0 flex justify-center items-center gap-28 z-40">
+        <button onclick="switchTab('home', this)" class="bottom-nav-link active text-gray-500 flex flex-col items-center">
+            <i class="fa-solid fa-house text-3xl"></i><span>Home</span>
         </button>
-
-        <button onclick="switchTab('home', this)" class="bottom-nav-link active text-gray-500 flex flex-col items-center gap-1 hover:text-gray-300 cursor-pointer opacity-70">
-            <i class="fa-solid fa-house text-3xl mb-1"></i>
-            <span class="text-sm font-bold tracking-widest text-gray-400 uppercase font-boxy-num">Home</span>
+        <button onclick="switchTab('console', this)" class="bottom-nav-link text-gray-500 flex flex-col items-center">
+            <i class="fa-solid fa-terminal text-3xl"></i><span>Console</span>
         </button>
-
-        <button onclick="switchTab('console', this)" class="bottom-nav-link text-gray-500 flex flex-col items-center gap-1 hover:text-gray-300 cursor-pointer opacity-70">
-            <i class="fa-solid fa-terminal text-3xl mb-1"></i>
-            <span class="text-sm font-bold tracking-widest text-gray-400 uppercase font-boxy-num">Console</span>
-        </button>
-
     </nav>
 
     <script>
-        function switchTab(tabId, element) {
+        function switchTab(tabId, el) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.bottom-nav-link').forEach(l => l.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            
-            document.querySelectorAll('.bottom-nav-link').forEach(l => {
-                l.classList.remove('active');
-            });
-            
-            if (element) {
-                element.classList.add('active');
-            }
+            el.classList.add('active');
         }
 
-        function openUserActions(username) {
-            document.getElementById('current-user-name').innerText = username;
-            document.getElementById('player-skin-img').src = `https://mc-heads.net/body/${username}/180`;
+        async function sendCommand() {
+            const input = document.getElementById('command-input');
+            const output = document.getElementById('console-output');
+            const cmd = input.value;
+            if (!cmd) return;
 
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.getElementById('user-actions').classList.add('active');
-            
-            document.querySelectorAll('.bottom-nav-link').forEach(l => l.classList.remove('active'));
-            document.querySelector('[onclick*="users"]').classList.add('active');
+            output.innerHTML += `<div class="text-blue-400">> ${cmd}</div>`;
+            input.value = '';
+
+            const proxy = 'https://corsproxy.io/?';
+            const target = 'http://45.13.237.186:8080/api/console';
+
+            try {
+                const response = await fetch(proxy + encodeURIComponent(target), {
+                    method: 'POST',
+                    headers: {
+                        'token': 'tungtungsahorTripleTGooberPleaseShutUp',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ command: cmd })
+                });
+                const data = await response.json();
+                output.innerHTML += `<div class="text-gray-300">${JSON.stringify(data)}</div>`;
+            } catch (err) {
+                output.innerHTML += `<div class="text-red-500">[ERROR]: Proxy Connection Failed</div>`;
+            }
+            output.scrollTop = output.scrollHeight;
         }
     </script>
 </body>

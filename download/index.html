@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LMNL | Downloads</title>
+    
+    <link href="https://cdnfonts.com" rel="stylesheet">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* GLOBAL FONT */
+        *, *::before, *::after { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Ari-W9500', sans-serif !important; 
+        }
+        
+        html, body { height: 100%; overflow: hidden; }
+        body {
+            position: relative;
+            background: #22252e;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* BACKGROUND SLIDER */
+        .slider-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background-color: #22252e;
+        }
+        .bg-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
+        .bg-slide.active { opacity: 0.25; }
+        
+        /* NAVIGATION BAR */
+        .navbar {
+            background: #303342;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #18243c;
+            position: relative;
+            z-index: 2;
+        }
+        .navbar a {
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .navbar a:hover { opacity: 0.8; }
+
+        /* MAIN CONTENT */
+        .main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* PIXELATED TITLE */
+        .main h1 { 
+            font-size: 56px; 
+            margin-bottom: 8px; 
+            color: #ffffff !important; 
+            image-rendering: pixelated;
+            text-shadow: 2px 2px 0px #18243c, 3px 3px 0px #18243c, 4px 4px 0px #18243c, 5px 5px 0px #18243c;
+        }
+        .main .sub { color: #9ca3af; margin-bottom: 32px; font-size: 16px; }
+        
+        /* DOWNLOAD BOX UI */
+        .download-card {
+            background: rgba(26, 28, 35, 0.95);
+            border: 2px solid #374151;
+            padding: 32px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        }
+        .file-name {
+            font-size: 24px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .file-info {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .file-info span { color: #60a5fa; }
+
+        /* BUTTONS */
+        .btn-download {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            padding: 12px 32px;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid #1d4ed8;
+            transition: all 0.2s;
+            text-transform: uppercase;
+        }
+        .btn-download:hover { background: #1d4ed8; transform: translateY(-2px); }
+        
+        .svg-icon {
+            width: 20px;
+            height: 20px;
+            fill: currentColor; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="bg-slide active" id="bg1"></div>
+        <div class="bg-slide" id="bg2"></div>
+    </div>
+
+    <div class="navbar">
+        <span style="color: white; font-weight: bold; letter-spacing: 2px;">LMNL</span>
+        <a href="index.html">← Back to Home</a>
+    </div>
+
+    <div class="main">
+        <h1>DOWNLOADS</h1>
+        <p class="sub">Get the latest files required to play on the server.</p>
+
+        <div class="download-card">
+            <h2 class="file-name">LMNServer.apk</h2>
+            <p class="file-info">Format: <span>Android / Quest</span> | Updated: <span>June 2026</span></p>
+            
+            <a href="https://www.dropbox.com/scl/fi/okeheb0mkvc2m96z5ubig/LMNServer.apk?rlkey=pv51rt3phd897flc4wrrzlpxk&st=ykdezaq8&dl=1" class="btn-download">
+                <svg class="svg-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                </svg>
+                Download LMNServer
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const maxImagesToCheck = 100; 
+        const slideInterval = 7000; 
+        const validImages = [];
+        let currentSlideIndex = 0;
+        
+        const bg1 = document.getElementById('bg1');
+        const bg2 = document.getElementById('bg2');
+        let activeLayer = bg1;
+        let inactiveLayer = bg2;
+
+        function scanAndLoadBackgrounds() {
+            const extensionsToTry = ['png', 'gif', 'jpg', 'jpeg'];
+            for (let i = 1; i <= maxImagesToCheck; i++) {
+                extensionsToTry.forEach(ext => {
+                    const img = new Image();
+                    img.onload = function() {
+                        const path = `${i}.${ext}`;
+                        if (!validImages.includes(path)) {
+                            validImages.push(path);
+                            if (validImages.length === 1) {
+                                activeLayer.style.backgroundImage = `url('${path}')`;
+                            }
+                        }
+                    };
+                    img.src = `${i}.${ext}`;
+                });
+            }
+            setTimeout(() => {
+                if (validImages.length > 1) startSliderLoop();
+            }, 1000);
+        }
+
+        function startSliderLoop() {
+            setInterval(() => {
+                currentSlideIndex = (currentSlideIndex + 1) % validImages.length;
+                const nextImgPath = validImages[currentSlideIndex];
+                inactiveLayer.style.backgroundImage = `url('${nextImgPath}')`;
+                inactiveLayer.classList.add('active');
+                activeLayer.classList.remove('active');
+                const temp = activeLayer;
+                activeLayer = inactiveLayer;
+                inactiveLayer = temp;
+            }, slideInterval);
+        }
+
+        scanAndLoadBackgrounds();
+    </script>
+</body>
+</html>
