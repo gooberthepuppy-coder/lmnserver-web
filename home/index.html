@@ -8,14 +8,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        /* ==========================================================================
-           GLOBAL APPLIED CUSTOM FONT (Uses the loaded webfont)
-           ========================================================================== */
+        /* GLOBAL APPLIED CUSTOM FONT */
         *, *::before, *::after { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            font-family: 'Ari-W9500', sans-serif !important; /* Forces Ari universally */
+            font-family: 'Ari-W9500', sans-serif !important; 
         }
         
         html, body { height: 100%; overflow: hidden; }
@@ -29,9 +27,7 @@
             justify-content: space-between;
         }
 
-        /* ==========================================================================
-           DYNAMIC CROSS-FADING BACKGROUND LAYERS
-           ========================================================================== */
+        /* DYNAMIC CROSS-FADING BACKGROUND LAYERS */
         .slider-container {
             position: absolute;
             top: 0;
@@ -53,15 +49,10 @@
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0;
-            
-            /* MODIFIED: Changed from 1.5s to 0.7s for a snappier transition */
             transition: opacity 0.7s ease-in-out;
         }
 
-        /* When active, set the opacity. Adjust 0.25 to make it darker or brighter */
-        .bg-slide.active {
-            opacity: 0.25; 
-        }
+        .bg-slide.active { opacity: 0.25; }
         
         marquee {
             background: #303342;
@@ -87,9 +78,7 @@
         }
         .main img { width: 80px; }
         
-        /* ==========================================================================
-           PIXELATED 3D LOGO TEXT STYLING
-           ========================================================================== */
+        /* PIXELATED 3D LOGO TEXT STYLING */
         .main h1 { 
             font-size: 56px; 
             margin-top: 16px; 
@@ -97,18 +86,11 @@
             text-transform: none;
             letter-spacing: -1px;
             font-weight: normal;
-            
             image-rendering: pixelated;
             font-smooth: never;
             -webkit-font-smoothing: none;
             -moz-osx-font-smoothing: none;
-
-            text-shadow: 
-                2px 2px 0px #18243c,
-                3px 3px 0px #18243c,
-                4px 4px 0px #18243c,
-                5px 5px 0px #18243c,
-                6px 6px 0px #18243c;
+            text-shadow: 2px 2px 0px #18243c, 3px 3px 0px #18243c, 4px 4px 0px #18243c, 5px 5px 0px #18243c, 6px 6px 0px #18243c;
         }
         
         .main .sub { color: #9ca3af; margin-top: 16px; font-size: 14px; }
@@ -208,10 +190,7 @@
                 YOUTUBE
             </a>
 
-            <span class="boarded">
-                <a href="players.html" class="btn-gray">ONLINE PLAYERS</a>
-                <img src="wood_plank.png" class="plank" alt="boarded up">
-            </span>
+            <a href="https://lmnserver.online/download" class="btn-gray">DOWNLOADS</a>
         </div>
     </div>
 
@@ -219,7 +198,7 @@
 
     <script>
         const maxImagesToCheck = 100; 
-        const slideInterval = 7000; // Time each image stays visible (7 seconds)
+        const slideInterval = 7000;
 
         const validImages = [];
         let currentSlideIndex = 0;
@@ -229,9 +208,7 @@
         let activeLayer = bg1;
         let inactiveLayer = bg2;
 
-        // Format Scan Engine: Looks for matching formats automatically
         function scanAndLoadBackgrounds() {
-            let checksCompleted = 0;
             const extensionsToTry = ['png', 'gif', 'jpg', 'jpeg'];
 
             for (let i = 1; i <= maxImagesToCheck; i++) {
@@ -246,14 +223,10 @@
                             }
                         }
                     };
-                    img.onerror = function() {
-                        // Quietly fail if the file/extension combo doesn't exist
-                    };
                     img.src = `${i}.${ext}`;
                 });
             }
 
-            // Fire up the rotation loop after giving the browser a moment to check files
             setTimeout(() => {
                 if (validImages.length > 1) {
                     startSliderLoop();
@@ -261,24 +234,16 @@
             }, 1000);
         }
 
-        // Dynamic Rotation Loop
         function startSliderLoop() {
             setInterval(() => {
                 currentSlideIndex = (currentSlideIndex + 1) % validImages.length;
                 const nextImgPath = validImages[currentSlideIndex];
-
-                // Put the next verified image on the hidden layer
                 inactiveLayer.style.backgroundImage = `url('${nextImgPath}')`;
-
-                // Crossfade using CSS Opacity transitions (takes 0.7s)
                 inactiveLayer.classList.add('active');
                 activeLayer.classList.remove('active');
-
-                // Swap target variables for the next round
                 const temp = activeLayer;
                 activeLayer = inactiveLayer;
                 inactiveLayer = temp;
-
             }, slideInterval);
         }
 
